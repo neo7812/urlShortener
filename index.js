@@ -7,6 +7,7 @@ const app = express();
 const PORT = 3000;
 
 
+
 connectDB('mongodb://127.0.0.1:27017/urlShortener')
     .then(() => console.log("Connected to MongoDB"));
 
