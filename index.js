@@ -18,11 +18,11 @@ app.use(express.json());
 app.use("/url", urlRouter);
 
 
-app.get("/url/:shortId", async (req, res) => {
+app.get("/:shortId", async (req, res) => {
     const shortId = req.params.shortId;
     const urlEntry = await URL.findOne({ shortUrl: shortId });
     if (urlEntry) {
-        urlEntry.visitHistory.push({ timestamp: new Date() });
+        urlEntry.visitHistory.push({ timestamp: new Date().toLocaleDateString() });
         await urlEntry.save();
         return res.redirect(urlEntry.originalUrl);
     } else {
